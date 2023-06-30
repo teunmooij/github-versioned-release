@@ -1,6 +1,7 @@
 import type { Octokit } from '@octokit/rest';
 import { glob } from 'glob';
 import fs from 'node:fs';
+import { join } from 'node:path';
 
 import type { Arguments, TreePart } from './types';
 
@@ -33,7 +34,6 @@ export const createCommit = async ({ include, exclude, version }: Arguments, oct
   const files = await glob(getIncludePatterns(include), {
     ignore: await getExcludePatterns(exclude),
     nodir: true,
-    absolute: true,
     cwd: process.env.GITHUB_WORKSPACE,
   });
 
@@ -45,7 +45,7 @@ export const createCommit = async ({ include, exclude, version }: Arguments, oct
       path,
       mode: '100644',
       type: 'blob',
-      content: await fs.promises.readFile(path, 'utf8'),
+      content: await fs.promises.readFile(join(process.env.GITHUB_WORKSPACE!, path), 'utf8'),
     }),
   );
 
