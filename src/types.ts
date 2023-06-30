@@ -2,6 +2,7 @@ import type { Endpoints } from '@octokit/types';
 
 export interface Arguments {
   version: string;
+  template: string;
   include: string;
   exclude: string;
 }

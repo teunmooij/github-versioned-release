@@ -5,13 +5,27 @@ import { join } from 'node:path';
 
 import type { Arguments, TreePart } from './types';
 
+const templates: Record<string, string[]> = {
+  'composite-action': ['action.{yml,yaml}', 'LICENSE'],
+  'javascript-action': ['action.{yml,yaml}', 'dist/**', 'LICENSE'],
+};
+
 const extractNames = (input: string) =>
   input
     .split('\n')
-    .map(name => name.trim())
+    .map(name => {
+      const trimmed = name.trim();
+      if (trimmed.endsWith('/')) return trimmed + '**';
+      return trimmed;
+    })
     .filter(name => name);
 
-const getIncludePatterns = (include: string) => {
+const getIncludePatterns = ({ template, include }: Pick<Arguments, 'include' | 'template'>) => {
+  if (template) {
+    if (!templates[template]) throw new Error(`'${template}' is not a valid template`);
+    return templates[template];
+  }
+
   const list = extractNames(include);
 
   if (list.length) return list;
@@ -23,15 +37,15 @@ const getExcludePatterns = async (exclude: string) => {
     return extractNames(exclude);
   }
 
-  if (!fs.existsSync('.ghignore')) return [];
+  if (!fs.existsSync('.gvrignore')) return [];
 
-  const ignoreFile = await fs.promises.readFile('.ghignore', 'utf8');
+  const ignoreFile = await fs.promises.readFile('.gvrignore', 'utf8');
   return extractNames(ignoreFile);
 };
 
-export const createCommit = async ({ include, exclude, version }: Arguments, octokit: Octokit): Promise<string> => {
+export const createCommit = async ({ template, include, exclude, version }: Arguments, octokit: Octokit): Promise<string> => {
   // Determine which files to include
-  const files = await glob(getIncludePatterns(include), {
+  const files = await glob(getIncludePatterns({ template, include }), {
     ignore: await getExcludePatterns(exclude),
     nodir: true,
     cwd: process.env.GITHUB_WORKSPACE,

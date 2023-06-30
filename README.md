@@ -1,4 +1,6 @@
-# Github Publish
+# Github Versioned Release
+
+Github action for publishing 
 
 include
 
@@ -7,7 +9,7 @@ Files to include, if not provided everything is included, except dotfiles
 exclude
 
 Files to exclude. If directory, append `/**`
-Also possible to use a `.ghignore` file
+Also possible to use a `.gvrignore` file
 
 env
 

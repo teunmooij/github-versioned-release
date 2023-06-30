@@ -1,5 +1,5 @@
-name: "Github Publish"
-description: "Github action to publish a semantically versioned Github release"
+name: "Github Versioned Release"
+description: "Github action for creating versioned Github releases"
 author: "Teun Mooij"
 branding:
   icon: box
@@ -7,6 +7,9 @@ branding:
 inputs:
   verion:
     description: "The version of the release"
+    required: false
+  template:
+    description: "The template to use for the release"
     required: false
   include:
     description: "The files to include in the release"

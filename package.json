@@ -1,6 +1,6 @@
 {
-  "name": "yaml",
-  "description": "Github action to publish a semantically versioned Github release",
+  "name": "githib-versioned-release",
+  "description": "Github action fro creating versioned Github releases",
   "main": "dist/index.js",
   "scripts": {
     "build": "ncc build src/index.ts --license licenses.txt",

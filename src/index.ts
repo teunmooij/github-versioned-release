@@ -10,6 +10,7 @@ if(!process.env.GITHUB_REPOSITORY) throw new Error('GITHUB_REPOSITORY not define
 
 const args: Arguments = {
   version: core.getInput('version'),
+  template: core.getInput('template'),
   include: core.getInput('include'),
   exclude: core.getInput('exclude'),
 };
