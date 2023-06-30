@@ -1,0 +1,22 @@
+name: "Github Publish"
+description: "Github action to publish a semantically versioned Github release"
+author: "Teun Mooij"
+branding:
+  icon: box
+  color: yellow
+inputs:
+  verion:
+    description: "The version of the release"
+    required: false
+  include:
+    description: "The files to include in the release"
+    required: false
+  exclude:
+    description: "The files to exclude from the release"
+    required: false
+outputs:
+  sha:
+    description: "The sha of the release"
+runs:
+  using: "node16"
+  main: "dist/index.js"
