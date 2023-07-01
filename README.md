@@ -1,11 +1,11 @@
 # Github Versioned Release
 
-Github action for creating versioned github releases.
+Github action for creating versioned github releases containing only the files you want.
 
 The action is typically used on the `release` event and follows the following process:
 
 - Creates a release commit containing the specified files
-- Moves the releae tag to the release commit
+- Moves the release tag to the release commit
 - Moves the major and minor version tags to the release commit (if not draft or pre-release)
 
 ## Usage
@@ -32,7 +32,7 @@ jobs:
       - run: npm run build
 
       # Create your semantically version release
-      - uses: ./
+      - uses: teunmooij/github-versioned-release@v1
         with:
           template: 'javascript-action'
         env:

@@ -1,5 +1,5 @@
 name: "Github Versioned Release"
-description: "Github action for creating versioned Github releases"
+description: "Github action for creating versioned Github releases containing only the files you want"
 author: "Teun Mooij"
 branding:
   icon: box
