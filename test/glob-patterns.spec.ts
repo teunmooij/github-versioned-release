@@ -19,7 +19,7 @@ describe('glob patterns tests', () => {
 
       const result = getIncludePatterns(args);
 
-      expect(result).toEqual(['action.{yml,yaml}', 'LICENSE']);
+      expect(result).toEqual(['action.{yml,yaml}', 'LICENSE', 'README{,.md}']);
     });
 
     it('returns a javascript-action pattern when template is javascript-action', () => {
@@ -27,7 +27,7 @@ describe('glob patterns tests', () => {
 
       const result = getIncludePatterns(args);
 
-      expect(result).toEqual(['action.{yml,yaml}', 'dist/**', 'LICENSE']);
+      expect(result).toEqual(['action.{yml,yaml}', 'dist/**', 'LICENSE', 'README{,.md}']);
     });
 
     it('throws an error when an invalid template is specified', () => {
@@ -74,6 +74,7 @@ describe('glob patterns tests', () => {
         'action.{yml,yaml}',
         'dist/**',
         'LICENSE',
+        'README{,.md}',
         'README.md',
         '!src/*.ts',
       ]);
