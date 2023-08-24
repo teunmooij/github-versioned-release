@@ -66,10 +66,10 @@ The files that are included in the release are determined by the `template`, `in
 
 This action includes the following templates:
 
-- composite-action, which includes action.yml and LICENSE files
-- javascript-action, which includes action.yml, LICENSE file and dist folder
+- composite-action, which includes action.yml LICENSE, README and CHANGELOG files
+- javascript-action, which includes action.yml, LICENSE, README, CHANGELOG file and dist folder
 
-If no template is provided, the files matching the `include` parameter are included. If no `include` parameter is provided, all the files are included.
+If no template is provided, the files matching the `include` parameter are included. If no `include` parameter is provided either, all the files are included.
 
 ### Excluded files
 

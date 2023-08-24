@@ -2,9 +2,11 @@ import fs from 'node:fs';
 
 import type { Arguments } from './types';
 
+const basicFilePatterns = ['LICENSE{,.md,.txt}', 'README{,.md,.txt}', 'CHANGELOG{,.md,.txt}'];
+
 const templates: Record<string, string[]> = {
-  'composite-action': ['action.{yml,yaml}', 'LICENSE', 'README{,.md}'],
-  'javascript-action': ['action.{yml,yaml}', 'dist/**', 'LICENSE', 'README{,.md}'],
+  'composite-action': ['action.{yml,yaml}', ...basicFilePatterns],
+  'javascript-action': ['action.{yml,yaml}', 'dist/**', ...basicFilePatterns],
 };
 
 const extractNames = (input: string) =>
