@@ -5,7 +5,7 @@ branding:
   icon: box
   color: yellow
 inputs:
-  verion:
+  version:
     description: "The version of the release"
     required: false
   template:
